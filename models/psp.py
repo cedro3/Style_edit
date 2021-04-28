@@ -5,7 +5,7 @@ import torch
 from torch import nn
 from models.encoders import psp_encoders
 from models.stylegan2.model import Generator
-from configs.paths_config import model_paths
+# from configs.paths_config import model_paths
 
 
 def get_keys(d, name):
@@ -45,7 +45,7 @@ class pSp(nn.Module):
             self.__load_latent_avg(ckpt)
         else:
             print('Loading encoders weights from irse50!')
-            encoder_ckpt = torch.load(model_paths['ir_se50'])
+            encoder_ckpt = torch.load('pretrained_models/model_ir_se50.pth')
             self.encoder.load_state_dict(encoder_ckpt, strict=False)
             print('Loading decoder weights from pretrained!')
             ckpt = torch.load(self.opts.stylegan_weights)
